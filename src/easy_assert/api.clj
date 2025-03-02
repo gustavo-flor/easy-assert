@@ -1,11 +1,9 @@
 (ns easy-assert.api
-  (:require [clojure.test :refer [is]]
+  (:require [easy-assert.asserts :refer [default-assert]]
             [easy-assert.generator :refer [generate-helpers]]
             [easy-assert.matchers :refer [default-matchers]]))
 
-(defn ^:private is-fn [form msg] (is form msg))
-
-(def ^:private helpers (generate-helpers is-fn default-matchers))
+(def ^:private helpers (generate-helpers default-assert default-matchers))
 
 (def assert-that (:assert-that helpers))
 
