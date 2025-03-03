@@ -2,7 +2,7 @@
   (:require [clojure.string :as str]
             [easy-assert.util.text :refer [red-highlight yellow-highlight]]))
 
-(defn is-equal-to?
+(defn is-equal-to
   "Checks if the actual value is equal to the expected value.
 
   Parameters:
@@ -16,7 +16,7 @@
     [true]
     [false (str "Expected: " (yellow-highlight expected) ", but got: " (red-highlight actual))]))
 
-(defn is-not-equal-to?
+(defn is-not-equal-to
   "Checks if the actual value is not equal to the expected value.
 
   Parameters:
@@ -30,7 +30,7 @@
     [true]
     [false (str "Expected: " (yellow-highlight expected) " not to be equal to, but got: " (red-highlight actual))]))
 
-(defn starts-with?
+(defn starts-with
   "Checks if the actual string starts with the expected string.
 
   Parameters:
@@ -44,7 +44,7 @@
     [true]
     [false (str "Expected to start with: " (yellow-highlight expected) ", but got: " (red-highlight actual))]))
 
-(defn has-size?
+(defn has-size
   "Checks if the collection has the expected size.
 
   Parameters:
@@ -59,7 +59,7 @@
       [true]
       [false (str "Expected size: " (yellow-highlight expected) ", but got " (red-highlight size))])))
 
-(defn includes?
+(defn includes
   "Checks if the actual collection includes all the expected elements.
 
   Parameters:
@@ -74,7 +74,7 @@
       [true]
       [false (str (str/join ", " not-included) " should be included in " (pr-str actual))])))
 
-(defn does-not-include?
+(defn does-not-include
   "Checks if the actual collection does not include any of the expected elements.
 
   Parameters:
@@ -89,7 +89,7 @@
       [true]
       [false (str (str/join ", " included) " should not be included in " (pr-str actual))])))
 
-(defn exception-has-message?
+(defn exception-has-message
   "Checks if the exception has the expected message.
 
   Parameters:
@@ -104,7 +104,7 @@
       [true]
       [false (str "Expected exception message: " (yellow-highlight expected) ", but got: " (red-highlight actual))])))
 
-(defn exception-caused-by?
+(defn exception-caused-by
   "Checks if the exception was caused by the expected cause.
 
   Parameters:
@@ -133,13 +133,13 @@
     :does-not-include      - Checks if the actual collection does not include any of the expected elements.
     :exception-has-message - Checks if the exception has the expected message.
     :exception-caused-by   - Checks if the exception was caused by the expected cause."
-  {:is-equal-to           is-equal-to?
-   :is-not-equal-to       is-not-equal-to?
-   :is                    is-equal-to?
-   :is-not                is-not-equal-to?
-   :starts-with           starts-with?
-   :has-size              has-size?
-   :includes              includes?
-   :does-not-include      does-not-include?
-   :exception-has-message exception-has-message?
-   :exception-caused-by   exception-caused-by?})
+  {:is-equal-to           is-equal-to
+   :is-not-equal-to       is-not-equal-to
+   :is                    is-equal-to
+   :is-not                is-not-equal-to
+   :starts-with           starts-with
+   :has-size              has-size
+   :includes              includes
+   :does-not-include      does-not-include
+   :exception-has-message exception-has-message
+   :exception-caused-by   exception-caused-by})

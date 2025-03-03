@@ -107,6 +107,10 @@ Now you can use the generated helper functions in the same way as the default AP
 (assert-that http-response :has-status 200)
 ```
 
+#### Available Matchers
+
+- Read the [Available Matchers](doc/available-matchers.md) documentation for more information.
+
 ## Contributing
 
 1. Fork the repository on GitHub.
