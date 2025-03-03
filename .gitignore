@@ -1,4 +1,4 @@
-# Leiningen
+# Clojure / Leiningen
 /target
 /classes
 /checkouts
@@ -12,7 +12,11 @@ pom.xml.asc
 /.prepl-port
 .hgignore
 .hg/
+/.cpcache
 
 # JetBrains
 *.iml
 /.idea
+
+# Secrets
+.env

@@ -1,10 +1,16 @@
 # Easy Assert
 
-A Clojure library designed to ... well, that part is up to you.
+A Clojure library designed to help you with assertions.
 
 ## Usage
 
 FIXME
+
+## Deploying
+
+```shell
+env CLOJARS_USERNAME=USER-NAME CLOJARS_PASSWORD=CLOJARS_XXXXXXXX clj -T:build deploy!
+```
 
 ## License
 

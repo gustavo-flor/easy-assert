@@ -1,4 +1,4 @@
-(defproject dev.gustavoflor/easy-assert "0.0.1"
+(defproject com.github.gustavo-flor/easy-assert "0.0.1"
   :description "FIXME: write description"
   :url "https://github.com/gustavo-flor/easy-assert"
   :license {:name "Apache License, Version 2.0"

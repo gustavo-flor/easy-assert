@@ -3,4 +3,4 @@
 
 (defn default-assert
   [result message]
-  (is result message))
+  (is result (str message "\n")))
