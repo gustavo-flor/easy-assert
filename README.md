@@ -1,22 +1,116 @@
 # Easy Assert
 
+[![Clojars Project](https://img.shields.io/clojars/v/com.github.gustavo-flor/easy-assert.svg)](https://clojars.org/com.github.gustavo-flor/easy-assert)
+
 A Clojure library designed to help you with assertions.
+
+## Installation
+
+Add the following dependency to your `project.clj` file:
+
+```clojure
+[com.github.gustavo-flor/easy-assert "0.1.0"]
+```
+
+Other available options on [Clojars repo](https://clojars.org/com.github.gustavo-flor/easy-assert).
 
 ## Usage
 
-FIXME
+### Importing the Library
 
-## License
+First, require the necessary namespaces in your Clojure file:
 
-Copyright © 2025 FIXME
+```clojure
+(ns your-namespace
+  (:require [easy-assert.api :refer :all]))
+```
 
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
+### Using the Default API
 
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
+The default API provides a set of helper functions for common assertions.
+
+#### Using `assert-that`
+
+The `assert-that` function is used to assert various conditions:
+
+```clojure
+(assert-that 5 :is-equal-to 5)
+(assert-that 5 :is-not-equal-to 10)
+(assert-that "hello" :starts-with "he")
+
+; You can attach multiple conditions to be validated
+(assert-that [1 2 3] 
+             :has-size 3
+             :includes [1 2]
+             :does-not-include [4 5])
+```
+
+#### Using `fail`
+
+The `fail` function is used to force a failure with a given message:
+
+```clojure
+(fail "This should always fail") 
+; Always fails with the message "This should always fail"
+```
+
+#### Using `assert-that-thrown-by`
+
+The `assert-that-thrown-by` function is used to assert that a function throws an exception:
+
+```clojure
+(def exception (Exception. "error"))
+
+(assert-that-thrown-by #(throw exception) 
+                       :exception-has-message "error"
+                       :exception-caused-by nil) ; Passes
+```
+
+### Customizing with Generator
+
+You can customize the assertion functions by generating your own helpers.
+
+#### Generating Helper Functions
+
+First, require the necessary namespaces:
+
+```clojure
+(ns your-namespace
+  (:require [easy-assert.generator :refer [generate-helpers]]))
+```
+
+Then, generate the helper functions using your assertion function and matchers:
+
+```clojure
+(def my-assert (fn [result message] 
+                 (when (not result) 
+                   (throw (AssertionError. message)))))
+
+(defn has-status?
+  [actual expected]
+  (if (= (:status actual) expected)
+    [true]
+    [false "My custom failure message"]))
+
+(def my-matchers {:has-status has-status?})
+
+(def helpers (generate-helpers my-assert (merge default-matchers my-matchers)))
+
+(def assert-that (:assert-that helpers))
+```
+
+Now you can use the generated helper functions in the same way as the default API:
+
+```clojure
+(def http-response {:status 200 ,,,})
+
+(assert-that http-response :has-status 200)
+```
+
+## Contributing
+
+1. Fork the repository on GitHub.
+2. Create a new branch for your feature or bugfix.
+3. Write your code and tests.
+4. Ensure all tests pass.
+5. Submit a pull request with a clear description of your changes.
