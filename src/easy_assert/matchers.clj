@@ -1,8 +1,8 @@
 (ns easy-assert.matchers
   (:require [clojure.string :as str]
-            [easy-assert.shared.text :refer [red-highlight yellow-highlight]]))
+            [easy-assert.util.text :refer [red-highlight yellow-highlight]]))
 
-(defn ^:private is-equal-to?
+(defn is-equal-to?
   "Checks if the actual value is equal to the expected value.
 
   Parameters:
@@ -16,7 +16,7 @@
     [true]
     [false (str "Expected: " (yellow-highlight expected) ", but got: " (red-highlight actual))]))
 
-(defn ^:private is-not-equal-to?
+(defn is-not-equal-to?
   "Checks if the actual value is not equal to the expected value.
 
   Parameters:
@@ -30,7 +30,7 @@
     [true]
     [false (str "Expected: " (yellow-highlight expected) " not to be equal to, but got: " (red-highlight actual))]))
 
-(defn ^:private starts-with?
+(defn starts-with?
   "Checks if the actual string starts with the expected string.
 
   Parameters:
@@ -44,7 +44,7 @@
     [true]
     [false (str "Expected to start with: " (yellow-highlight expected) ", but got: " (red-highlight actual))]))
 
-(defn ^:private has-size?
+(defn has-size?
   "Checks if the collection has the expected size.
 
   Parameters:
@@ -59,7 +59,7 @@
       [true]
       [false (str "Expected size: " (yellow-highlight expected) ", but got " (red-highlight size))])))
 
-(defn ^:private includes?
+(defn includes?
   "Checks if the actual collection includes all the expected elements.
 
   Parameters:
@@ -74,7 +74,7 @@
       [true]
       [false (str (str/join ", " not-included) " should be included in " (pr-str actual))])))
 
-(defn ^:private does-not-include?
+(defn does-not-include?
   "Checks if the actual collection does not include any of the expected elements.
 
   Parameters:
@@ -89,7 +89,7 @@
       [true]
       [false (str (str/join ", " included) " should not be included in " (pr-str actual))])))
 
-(defn ^:private exception-has-message?
+(defn exception-has-message?
   "Checks if the exception has the expected message.
 
   Parameters:
@@ -104,7 +104,7 @@
       [true]
       [false (str "Expected exception message: " (yellow-highlight expected) ", but got: " (red-highlight actual))])))
 
-(defn ^:private exception-caused-by?
+(defn exception-caused-by?
   "Checks if the exception was caused by the expected cause.
 
   Parameters:
@@ -119,13 +119,27 @@
       [true]
       [false (str "Expected exception cause: " (yellow-highlight expected) ", but got: " (red-highlight actual))])))
 
-(def default-matchers {:is-equal-to           is-equal-to?
-                       :is-not-equal-to       is-not-equal-to?
-                       :is                    is-equal-to?
-                       :is-not                is-not-equal-to?
-                       :starts-with           starts-with?
-                       :has-size              has-size?
-                       :includes              includes?
-                       :does-not-include      does-not-include?
-                       :exception-has-message exception-has-message?
-                       :exception-caused-by   exception-caused-by?})
+(def default-matchers
+  "A map of default matcher functions.
+
+  Matchers:
+    :is-equal-to           - Checks if the actual value is equal to the expected value.
+    :is-not-equal-to       - Checks if the actual value is not equal to the expected value.
+    :is                    - Alias for :is-equal-to.
+    :is-not                - Alias for :is-not-equal-to.
+    :starts-with           - Checks if the actual string starts with the expected string.
+    :has-size              - Checks if the collection has the expected size.
+    :includes              - Checks if the actual collection includes all the expected elements.
+    :does-not-include      - Checks if the actual collection does not include any of the expected elements.
+    :exception-has-message - Checks if the exception has the expected message.
+    :exception-caused-by   - Checks if the exception was caused by the expected cause."
+  {:is-equal-to           is-equal-to?
+   :is-not-equal-to       is-not-equal-to?
+   :is                    is-equal-to?
+   :is-not                is-not-equal-to?
+   :starts-with           starts-with?
+   :has-size              has-size?
+   :includes              includes?
+   :does-not-include      does-not-include?
+   :exception-has-message exception-has-message?
+   :exception-caused-by   exception-caused-by?})

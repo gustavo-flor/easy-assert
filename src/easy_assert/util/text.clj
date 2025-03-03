@@ -1,5 +1,5 @@
-(ns easy-assert.shared.text
-  (:require [easy-assert.shared.ansi :refer [get-color-code]]))
+(ns easy-assert.util.text
+  (:require [easy-assert.util.ansi :refer [get-color-code]]))
 
 (defn highlight
   "Highlights the given text with the specified color.

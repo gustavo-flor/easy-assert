@@ -1,4 +1,4 @@
-(ns easy-assert.shared.ansi)
+(ns easy-assert.util.ansi)
 
 ; Read more on https://en.wikipedia.org/wiki/ANSI_escape_code#Control_Sequence_Introducer_commands
 (def ^:private control-sequence-introducer "\033[")

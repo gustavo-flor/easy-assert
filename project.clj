@@ -1,4 +1,4 @@
-(defproject com.github.gustavo-flor/easy-assert "0.0.3"
+(defproject com.github.gustavo-flor/easy-assert "1.0.0"
   :description "A Clojure library designed to help you with assertions."
   :url "https://github.com/gustavo-flor/easy-assert"
   :license {:name "Apache License, Version 2.0"
