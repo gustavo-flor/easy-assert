@@ -1,7 +1,8 @@
 name: Continuous Deployment
 on:
   push:
-    tags: [ * ]
+    tags:
+      - '*'
 jobs:
   test:
     strategy:
