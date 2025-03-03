@@ -1,6 +1,6 @@
 (ns easy-assert.generator)
 
-(defn ^:private generate-assert-that
+(defn generate-assert-that
   "Generates an assertion function that checks if a value matches the expected criteria.
 
   Parameters:
@@ -21,7 +21,7 @@
             [result message] (match? value expected)]
         (assert result message)))))
 
-(defn ^:private generate-fail
+(defn generate-fail
   "Generates a function that always fails with a given message.
 
   Parameters:
@@ -37,7 +37,7 @@
   (fn [message]
     (assert false message)))
 
-(defn ^:private generate-assert-that-thrown-by
+(defn generate-assert-that-thrown-by
   "Generates an assertion function that checks if a function throws an exception.
 
   Parameters:
@@ -66,7 +66,12 @@
     `matchers` - A map of matcher functions.
 
   Returns:
-    A map containing the generated helper functions."
+    A map containing the generated helper functions.
+
+  Helpers:
+    `assert-that`
+    `fail`
+    `assert-that-thrown-by`"
   [assert matchers]
   (let [assert-that           (generate-assert-that assert matchers)
         fail                  (generate-fail assert)

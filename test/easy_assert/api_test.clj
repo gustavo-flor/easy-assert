@@ -1,6 +1,6 @@
 (ns easy-assert.api-test
-  (:require [easy-assert.api :refer :all]
-            [clojure.test :refer :all]))
+  (:require [clojure.test :refer :all]
+            [easy-assert.api :refer :all]))
 
 (def ^:private fellowship-of-the-ring
   ["frodo" "sam" "gandalf" "legolas" "aragorn" "boromir" "gimli" "merry" "pippin"])
