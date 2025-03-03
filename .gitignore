@@ -18,6 +18,3 @@ pom.xml.asc
 # JetBrains
 *.iml
 /.idea
-
-# Secrets
-.env
