@@ -9,7 +9,7 @@ A Clojure library designed to help you with assertions.
 Add the following dependency to your `project.clj` file:
 
 ```clojure
-[com.github.gustavo-flor/easy-assert "0.1.0"]
+[com.github.gustavo-flor/easy-assert "*.*.*"]
 ```
 
 Other available options on [Clojars repo](https://clojars.org/com.github.gustavo-flor/easy-assert).
