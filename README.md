@@ -6,12 +6,6 @@ A Clojure library designed to help you with assertions.
 
 FIXME
 
-## Deploying
-
-```shell
-env CLOJARS_USERNAME=USER-NAME CLOJARS_PASSWORD=CLOJARS_XXXXXXXX clj -T:build deploy!
-```
-
 ## License
 
 Copyright © 2025 FIXME
