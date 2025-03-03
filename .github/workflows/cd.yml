@@ -43,7 +43,7 @@ jobs:
       - name: Install dependencies
         run: lein deps
       - name: Publish on Clojars
-        run: lein deploy publish
+        run: lein deploy releases
         env:
           CLOJARS_USERNAME: gustavo-flor
-          CLOJARS_PASSWD: ${{ secrets.CLOJARS_DEPLOY_TOKEN }}
+          CLOJARS_PASSWORD: ${{ secrets.CLOJARS_DEPLOY_TOKEN }}
